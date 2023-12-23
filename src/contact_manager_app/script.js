@@ -1,5 +1,9 @@
 let contacts = [];
 
+export default function sum(a, b) {
+  return a + b;
+}
+
 function renderContact(contact) {
   localStorage.setItem('contacts', JSON.stringify(contacts));
   const list = document.querySelector('.Contact_list');
