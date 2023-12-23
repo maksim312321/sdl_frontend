@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/maksim312321/sdl_frontend#readme",
   "dependencies": {
-    "eslint": "^8.56.0"
+    "eslint": "8.22.0"
   }
 }
