@@ -58,7 +58,6 @@ function myFunction(x) {
   demoarray.push(todoobject);
 
   renderTodo(todoobject);
-  console.log(demoarray);
 
   /* disabled this because updated it show in list  */
   /* // print demoarray in console
@@ -128,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const toggleSwitch = document.querySelector(
-  '.theme-switch input[type="checkbox"]'
+  '.theme-switch input[type="checkbox"]',
 );
 const currentTheme = localStorage.getItem('theme');
 
@@ -151,4 +150,3 @@ function switchTheme(e) {
 }
 
 toggleSwitch.addEventListener('change', switchTheme, false);
-

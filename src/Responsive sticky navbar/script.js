@@ -1,4 +1,6 @@
+// eslint-disable-next-line func-names
 window.onscroll = function () {
+  // eslint-disable-next-line no-use-before-define
   scrollFunction();
 };
 function scrollFunction() {
@@ -17,5 +19,3 @@ navLinks.forEach((link) => {
     document.body.classList.remove('nav-open');
   });
 });
-
-

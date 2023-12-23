@@ -29,14 +29,6 @@ function renderContact(contact) {
   list.append(node);
 }
 
-const list = document.querySelector('.Contact_list');
-list.addEventListener('click', (event) => {
-  if (event.target.classList.contains('js-delete-contact')) {
-    const itemKey = event.target.parentElement.dataset.key;
-    deleteContact(itemKey);
-  }
-});
-
 function deleteContact(key) {
   const index = contacts.findIndex((item) => item.id === Number(key));
   const UpdatedContactObject = {
@@ -46,6 +38,14 @@ function deleteContact(key) {
   contacts = contacts.filter((item) => item.id !== Number(key));
   renderContact(UpdatedContactObject);
 }
+
+const list = document.querySelector('.Contact_list');
+list.addEventListener('click', (event) => {
+  if (event.target.classList.contains('js-delete-contact')) {
+    const itemKey = event.target.parentElement.dataset.key;
+    deleteContact(itemKey);
+  }
+});
 
 function addContact() {
   const contactObject = {
@@ -76,5 +76,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
-

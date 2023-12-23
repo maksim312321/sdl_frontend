@@ -1,9 +1,13 @@
 {
+  "extends": "airbnb-base",
   "rules": {
     "semi": ["error", "always"],
     "quotes": ["error", "single"]
   },
   "parserOptions": {
     "ecmaVersion": 2020
+  },
+  "env": {
+    "browser": true
   }
 }
