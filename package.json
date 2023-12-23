@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/eslint ./src"
+    "test": "./node_modules/.bin/eslint ./src",
+    "lint_fix": "./node_modules/.bin/eslint --fix ./src"
   },
   "repository": {
     "type": "git",

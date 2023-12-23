@@ -11,8 +11,8 @@ function changeSlide(n) {
 // we'll get the value of n by calling function and passing slideIndex as an argument
 function showSlides(n) {
   var i;
-  var slides = document.getElementsByClassName("mySlides");
-  console.log(typeof slides + " " + slides.length);
+  var slides = document.getElementsByClassName('mySlides');
+  console.log(typeof slides + ' ' + slides.length);
 
   // let's write condition to loop a slideshow
   // when n is greater then slides.length then value of slideIndex should be 1
@@ -26,15 +26,15 @@ function showSlides(n) {
 
   /* hiding all images by default using display none  */
   for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+    slides[i].style.display = 'none';
     // console.log(slides[i])
   }
 
-  slides[slideIndex - 1].style.display = "block";
+  slides[slideIndex - 1].style.display = 'block';
   // console.log(`slide index ${slideIndex - 1}`);
 }
 
-document.addEventListener("contextmenu", (event) => event.preventDefault());
+document.addEventListener('contextmenu', (event) => event.preventDefault());
 document.onkeydown = function (e) {
   // disable F12 key
   if (e.keyCode == 123) {

@@ -18,7 +18,7 @@ function getRandomNumber() {
 }
 
 function getRandomSymbol() {
-  const symbols = "!@#$%^&*(){}[]=<>/,.";
+  const symbols = '!@#$%^&*(){}[]=<>/,.';
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
 
@@ -31,14 +31,14 @@ const randomFunc = {
 };
 
 // adding a click event listner to generate button
-const generate = document.getElementById("generateBtn");
-generate.addEventListener("click", () => {
-  const length = document.getElementById("Passwordlength").value;
-  const hasUpper = document.getElementById("uppercase").checked;
-  const hasLower = document.getElementById("lowercase").checked;
-  const hasNumber = document.getElementById("numbers").checked;
-  const hasSymbol = document.getElementById("symbols").checked;
-  const result = document.getElementById("PasswordResult");
+const generate = document.getElementById('generateBtn');
+generate.addEventListener('click', () => {
+  const length = document.getElementById('Passwordlength').value;
+  const hasUpper = document.getElementById('uppercase').checked;
+  const hasLower = document.getElementById('lowercase').checked;
+  const hasNumber = document.getElementById('numbers').checked;
+  const hasSymbol = document.getElementById('symbols').checked;
+  const result = document.getElementById('PasswordResult');
   result.innerText = generatePassword(
     hasLower,
     hasUpper,
@@ -51,7 +51,7 @@ generate.addEventListener("click", () => {
 
 // function for generating random password
 function generatePassword(lower, upper, number, symbol, length) {
-    let generatedPassword = "";
+    let generatedPassword = '';
     const typesCount = lower + upper + number + symbol;
     // filter out unchecked types
     const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(
@@ -73,15 +73,15 @@ function generatePassword(lower, upper, number, symbol, length) {
   }
   
   // copy to clipboard
-let button = document.getElementById("clipboardBtn");
+let button = document.getElementById('clipboardBtn');
 // add click event listner on button
-button.addEventListener("click", (e) => {
+button.addEventListener('click', (e) => {
   e.preventDefault();
   // execute command for copy text by selecting textarea text with id
   document.execCommand(
-    "copy",
+    'copy',
     false,
-    document.getElementById("PasswordResult").select()
+    document.getElementById('PasswordResult').select()
   );
 });
 

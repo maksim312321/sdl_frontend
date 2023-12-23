@@ -1,8 +1,8 @@
 let contacts = [];
 
 function renderContact(contact) {
-  localStorage.setItem("contacts", JSON.stringify(contacts));
-  const list = document.querySelector(".Contact_list");
+  localStorage.setItem('contacts', JSON.stringify(contacts));
+  const list = document.querySelector('.Contact_list');
   const item = document.querySelector(`[data-key='${contact.id}']`);
 
   if (contact.deleted) {
@@ -10,9 +10,9 @@ function renderContact(contact) {
     return;
   }
 
-  const node = document.createElement("article");
-  node.setAttribute("class", "person");
-  node.setAttribute("data-key", contact.id);
+  const node = document.createElement('article');
+  node.setAttribute('class', 'person');
+  node.setAttribute('data-key', contact.id);
   node.innerHTML = `
 <img src="${contact.imageUrl}" alt="123">
 <div class="contactdetail">
@@ -29,9 +29,9 @@ function renderContact(contact) {
   list.append(node);
 }
 
-const list = document.querySelector(".Contact_list");
-list.addEventListener("click", (event) => {
-  if (event.target.classList.contains("js-delete-contact")) {
+const list = document.querySelector('.Contact_list');
+list.addEventListener('click', (event) => {
+  if (event.target.classList.contains('js-delete-contact')) {
     const itemKey = event.target.parentElement.dataset.key;
     deleteContact(itemKey);
   }
@@ -49,10 +49,10 @@ function deleteContact(key) {
 
 function addContact() {
   const contactObject = {
-    name: document.getElementById("fullName").value,
-    email: document.getElementById("myEmail").value,
-    imageUrl: document.getElementById("imgUrl").value,
-    contactNumber: document.getElementById("myTel").value,
+    name: document.getElementById('fullName').value,
+    email: document.getElementById('myEmail').value,
+    imageUrl: document.getElementById('imgUrl').value,
+    contactNumber: document.getElementById('myTel').value,
     id: Date.now(),
   };
 
@@ -60,15 +60,15 @@ function addContact() {
   renderContact(contactObject);
 }
 
-const form = document.querySelector(".js-form");
-form.addEventListener("submit", (event) => {
+const form = document.querySelector('.js-form');
+form.addEventListener('submit', (event) => {
   event.preventDefault();
   addContact();
   form.reset();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const ref = localStorage.getItem("contacts");
+document.addEventListener('DOMContentLoaded', () => {
+  const ref = localStorage.getItem('contacts');
   if (ref) {
     contacts = JSON.parse(ref);
     contacts.forEach((t) => {
