@@ -1,12 +1,10 @@
-name: Frontend Workflow
-on: workflow_dispatch
+name: test frontend app workflow
+on: push
 jobs:
-  print:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Print to console
-        run: echo Hello GH Actions
-      - name: Print to console 2
-        run: |
-          echo Hello GH Actions 1
-          echo Hello GH Actions 1
+      - name: Get source code
+        uses: actions/checkout@v3
+      - name: log source code
+        uses: ls
