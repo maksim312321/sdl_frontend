@@ -31,7 +31,7 @@ function renderContact(contact) {
 
 const list = document.querySelector('.Contact_list');
 list.addEventListener('click', (event) => {
-  if (event.target.classList.contains('js-delete-contact')) {
+  if (event.target.classList.contains("js-delete-contact")) {
     const itemKey = event.target.parentElement.dataset.key;
     deleteContact(itemKey);
   }
