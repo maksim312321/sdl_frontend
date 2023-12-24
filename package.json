@@ -1,9 +1,12 @@
 {
+  "type": "module",
   "name": "sdl_frontend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "serve": " nodemon ./src/backend/index.js",
+    "start": " node ./src/backend/index.js",
     "lint": "./node_modules/.bin/eslint ./src",
     "test": "jest",
     "lint_fix": "./node_modules/.bin/eslint --fix ./src"
@@ -22,7 +25,9 @@
     "@jest/globals": "^29.7.0",
     "eslint": "8.22.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.29.1"
+    "eslint-plugin-import": "^2.29.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.6",
