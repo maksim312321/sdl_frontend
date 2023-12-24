@@ -1,7 +1,7 @@
 name: test frontend app workflow
 on: push
 jobs:
-  lint:
+  js_lint:
     runs-on: ubuntu-latest
     steps:
       - name: Get source code
