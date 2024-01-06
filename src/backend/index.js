@@ -6,11 +6,18 @@ const app = express();
 
 const FRONTEND_PATH = path.resolve() + '\\src\\frontend';
 
+app.get('/', (req, res) => {
+    app.use(express.static(FRONTEND_PATH));
+    res.sendFile(path.resolve(FRONTEND_PATH, 'index.html'));
+});
+
 app.get('/contact_manager_app', (req, res) => {
+    app.use(express.static(FRONTEND_PATH + '/contact_manager_app'));
     res.sendFile(path.resolve(FRONTEND_PATH, 'contact_manager_app', 'index.html'));
 });
 
 app.get('/password_generator_system', (req, res) => {
+    app.use(express.static(FRONTEND_PATH + '/password_generator_system'));
     res.sendFile(path.resolve(FRONTEND_PATH, 'password_generator_system', 'index.html'));
 });
 
