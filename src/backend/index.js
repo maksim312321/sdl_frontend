@@ -22,14 +22,17 @@ app.get('/password_generator_system', (req, res) => {
 });
 
 app.get('/responsive_sticky_navbar', (req, res) => {
+    app.use(express.static(FRONTEND_PATH + '/responsive_sticky_navbar'));
     res.sendFile(path.resolve(FRONTEND_PATH, 'responsive_sticky_navbar', 'index.html'));
 });
 
 app.get('/slideshow', (req, res) => {
+    app.use(express.static(FRONTEND_PATH + '/slideshow'));
     res.sendFile(path.resolve(FRONTEND_PATH, 'slideshow', 'index.html'));
 });
 
 app.get('/todo_app', (req, res) => {
+    app.use(express.static(FRONTEND_PATH + '/todo_app'));
     res.sendFile(path.resolve(FRONTEND_PATH, 'todo_app', 'index.html'));
 });
 
