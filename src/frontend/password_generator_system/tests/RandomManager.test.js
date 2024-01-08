@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import RandomManager from '../RandomManager.js';
+import RandomManager from '../js/RandomManager.js';
 
 describe('RandomManager module', () => {
     test('RandomManager.getRandomLower', () => {
