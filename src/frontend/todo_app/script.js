@@ -1,152 +1,106 @@
-/* Add a todo/ */
+// Variables
+var root = document.querySelector(":root");
+var container = document.querySelector(".container");
+var newTaskInput = document.getElementById("new_task_input");
+var taskform = document.getElementById("new_task_form");
+var tasksList = document.getElementById("tasksList");
+var taskBtns = document.querySelectorAll(".task_check_btn");
+var themeBtn = document.querySelector(".theme_toogle_btn");
+// Do this when we submit the form
+taskform.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var newtaskInputValue = taskform.elements.new_task_input;
 
-// creating a empty array
-let demoarray = [];
+    addTask(newtaskInputValue.value);
 
-// function for rendering the todo items
-function renderTodo(todo) {
-  localStorage.setItem('demoarray', JSON.stringify(demoarray));
-
-  // select unorder list using class
-  const list = document.querySelector('.todo-list');
-  const item = document.querySelector(`[data-key='${todo.id}']`);
-
-  if (todo.deleted) {
-    item.remove();
-    return;
-  }
-
-  // check if checked is true add done class effect otherwise as it is
-  const isChecked = todo.checked ? 'done' : '';
-  // create a new list
-  const newlist = document.createElement('li');
-  // set attribute to new list
-  newlist.setAttribute('class', `todo-item ${isChecked}`);
-  newlist.setAttribute('data-key', todo.id);
-  newlist.innerHTML = `
-<input id="${todo.id}"  type="checkbox"/>
-<label for "${todo.id}"  class="tick js-tick"></label>
-<span>${todo.x}</span>
-<button class="delete-todo js-delete-todo">
-    <button class="delete-todo js-delete-todo">
-        <svg fill="var(--svgcolor)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-        </svg>
-    </button>
-`;
-
-  if (item) {
-    list.replaceChild(newlist, item);
-  } else {
-    list.append(newlist);
-  }
-
-  /* // disabled this after fixing a selection bug
-                list.append(newlist); */
-}
-
-// function for adding a todo
-function myFunction(x) {
-  // creating a object
-  const todoobject = {
-    x,
-    checked: false,
-    id: Date.now(),
-  };
-
-  // push new todo into a demoarray object
-  demoarray.push(todoobject);
-
-  renderTodo(todoobject);
-
-  /* disabled this because updated it show in list  */
-  /* // print demoarray in console
-                console.log(demoarray); */
-}
-
-function toggleDone(b) {
-  const index = demoarray.findIndex((myitem) => myitem.id === Number(b));
-  demoarray[index].checked = !demoarray[index].checked;
-  renderTodo(demoarray[index]);
-}
-
-function deleteTodo(c) {
-  const index = demoarray.findIndex((myitem) => myitem.id === Number(c));
-  const emptytodo = {
-    deleted: true,
-    ...demoarray[index],
-  };
-  demoarray = demoarray.filter((myitem) => myitem.id !== Number(c));
-  renderTodo(emptytodo);
-}
-
-// select form
-const form = document.querySelector('.formselect');
-
-// add a event listner submit on form
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  // select input
-  const input = document.querySelector('.inputselect');
-
-  // remove whitespace of input vlaue using trim method
-  const text = input.value.trim();
-
-  // statement condition for printing a input value
-  if (text !== '') {
-    // call a function for adding a new todo value
-    myFunction(text);
-    // after submit input value will be become blank ""
-    input.value = '';
-  }
+    // Reset input value to empty
+    newtaskInputValue.value = "";
+    container.classList.remove("task_list_empty");
 });
 
-// select entire list
-const list = document.querySelector('.js-todo-list');
-list.addEventListener('click', (event) => {
-  if (event.target.classList.contains('js-tick')) {
-    const itemKey = event.target.parentElement.dataset.key;
-    toggleDone(itemKey);
-  }
+// To  add task in List
+function addTask(newTask) {
+    // Create li element and set its class
+    const newTaskItem = document.createElement("li");
+    newTaskItem.setAttribute("class", "task_item");
 
-  if (event.target.classList.contains('js-delete-todo')) {
-    const itemKey = event.target.parentElement.dataset.key;
-    deleteTodo(itemKey);
-  }
-});
+    // Create checkbox  element and set its type and  class
 
-document.addEventListener('DOMContentLoaded', () => {
-  const ref = localStorage.getItem('demoarray');
-  if (ref) {
-    demoarray = JSON.parse(ref);
-    demoarray.forEach((t) => {
-      renderTodo(t);
+    const newCheckBtn = document.createElement("div");
+    newCheckBtn.setAttribute("class", "task_check_btn");
+
+    // Create span  element and set its class and add new task input
+    const newTaskBio = document.createElement("span");
+    newTaskBio.setAttribute("class", "task_bio");
+    // Put value of input in it
+    newTaskBio.innerText = newTask; // putting value of input in the li
+
+    // append (insert) li tag in Ul
+    tasksList.appendChild(newTaskItem);
+    // append (insert) checkbox in li
+    newTaskItem.appendChild(newCheckBtn);
+
+    // append (insert) newtask in li
+    newTaskItem.appendChild(newTaskBio);
+
+    // Run this function when task is completed or checknox is checked
+    onTaskComplete(newCheckBtn);
+}
+
+// To remove the completed task
+function onTaskComplete(btns) {
+    btns.addEventListener("click", function (element) {
+        var parents = element.target.parentElement;
+        parents.classList.add("task-completed"); // To slide out the task to the right
+        // Now we delete that tast which we have slided out
+        setTimeout(() => {
+            // Removing Parent Element of checkobx which is Li in 0.5 s
+            parents.remove();
+        }, 400);
+
+        if (tasksList.childNodes.length === 1) {
+            setTimeout(() => {
+                container.classList.add("task_list_empty");
+            }, 200);
+        }
     });
-  }
+}
+
+// Dark mode
+
+themeBtn.addEventListener("click", function () {
+    var darkTheme = themeBtn.classList.toggle("dark");
+
+    if (darkTheme) {
+        root.style.setProperty("--theme-transition", "1s");
+        root.style.setProperty("--primary-color", "#1E1E1E");
+        root.style.setProperty("--secondary-color", "#3B3B3B");
+        root.style.setProperty("--text-color", "#EAEAEA");
+        root.style.setProperty("--task-color", "#3B3B3B");
+        root.style.setProperty("--footer-color", "#1E1E1E");
+        root.style.setProperty(
+            "--theme-btn",
+            `url('assets/Light-theme-btn.svg')`
+        );
+        root.style.setProperty(
+            "--container-bg",
+            `url('./assets/Dark-empty.svg')`
+        );
+        root.style.setProperty("--filter", "invert()");
+    } else {
+        root.style.setProperty("transition", "1s");
+        root.style.setProperty("--primary-color", "white");
+        root.style.setProperty("--secondary-color", "#1E1E1E");
+        root.style.setProperty("--text-color", "black");
+        root.style.setProperty("--task-color", "white");
+        root.style.setProperty("--footer-color", "#1E1E1E");
+        root.style.setProperty(
+            "--theme-btn",
+            `url('assets/Dark-theme-btn.svg')`
+        );
+        root.style.setProperty(
+            "--container-bg",
+            `url('./assets/Light-empty.svg')`
+        );
+    }
 });
-
-const toggleSwitch = document.querySelector(
-  '.theme-switch input[type="checkbox"]',
-);
-const currentTheme = localStorage.getItem('theme');
-
-if (currentTheme) {
-  document.documentElement.setAttribute('data-theme', currentTheme);
-
-  if (currentTheme === 'dark') {
-    toggleSwitch.checked = true;
-  }
-}
-
-function switchTheme(e) {
-  if (e.target.checked) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    document.documentElement.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
-  }
-}
-
-toggleSwitch.addEventListener('change', switchTheme, false);

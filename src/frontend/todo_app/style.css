@@ -1,266 +1,221 @@
-[data-theme="light"] {
---bg-color: #fff;
---color: #333;
---togglebg: #d4e7d5;
---toggleslider: #fff;
---roundcolor: #fff;
---svgcolor: #111;
+:root {
+    --primary-color: white;
+    --secondary-color: #1e1e1e;
+    --text-color: black;
+    --task-color: white;
+    --footer-color: #1e1e1e;
+    --theme-btn: url("assets/Dark-theme-btn.svg");
+    --container-bg: url("./assets/Light-empty.svg");
+    --complete-icon: url("assets/complete.svg");
+    --filter: none;
+    --theme-transition: 0s;
 }
 
-[data-theme="dark"] {
---bg-color: #333333;
---color: #e9dcdc;
---togglebg: #333;
---toggleslider: #e9dcdc;
---roundcolor: #333;
---svgcolor: #fff;
-}
-
-*,
-*::before,
-*::after {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
+* {
+    font-family: "Times New Roman";
+    outline: none;
 }
 
 body {
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-line-height: 1.4;
-background-color: var(--bg-color);
-transition: all 0.5s;
-}
-
-/* toggle  */
-
-nav {
-display: flex;
-justify-content: flex-end;
-padding: 20px 24px;
-}
-
-.btn {
-position: absolute;
-left: 2rem;
-margin-top: 0.3rem;
-}
-
-.theme-switch-wrapper {
-display: flex;
-align-items: center;
-}
-
-.theme-switch-wrapper em {
-margin-left: 10px;
-font-size: 1rem;
-}
-
-.theme-switch {
-display: inline-block;
-height: 34px;
-position: relative;
-width: 60px;
-}
-
-.theme-switch input {
-display: none;
-}
-
-.slider {
-background-color: var(--togglebg);
-bottom: 0;
-cursor: pointer;
-left: 0;
-position: absolute;
-right: 0;
-top: 0;
-transition: 0.4s;
-}
-
-.slider:before {
-background-color: var(--roundcolor);
-bottom: 4px;
-content: "";
-height: 26px;
-left: 4px;
-position: absolute;
-transition: 0.4s;
-width: 26px;
-}
-
-input:checked + .slider {
-background-color: var(--toggleslider);
-}
-
-input:checked + .slider:before {
-transform: translateX(26px);
-}
-
-.slider.round {
-border-radius: 34px;
-}
-
-.slider.round:before {
-border-radius: 50%;
-}
-
-em {
-color: var(--color);
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .container {
-width: 100%;
-max-width: 700px;
-margin: 0 auto;
-padding-left: 10px;
-padding-right: 10px;
-color: var(--color);
-margin: auto;
-padding-top: 4rem;
+    position: relative;
+    border: 4px var(--footer-color) solid;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 80vh;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--primary-color);
+    transition: var(--theme-transition);
 }
 
-.app-title {
-text-align: center;
-margin-bottom: 20px;
-font-size: 80px;
+header {
+    display: flex;
+    flex-direction: column;
 }
 
-svg {
-width: 64px;
-height: 64px;
+.heading {
+    font-weight: 900;
+    color: var(--text-color);
 }
 
-.todo-list {
-list-style: none;
-margin-bottom: 20px;
+.theme_toogle {
+    text-align: right;
+    margin-right: -15px;
 }
 
-.todo-item {
-margin-bottom: 10px;
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: space-between;
+.theme_toogle_btn {
+    min-width: 30px;
+    min-height: 30px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    background-image: var(--theme-btn);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    padding: 20px;
+    cursor: pointer;
 }
 
-.todo-item span {
-flex-grow: 1;
-margin-left: 10px;
-margin-right: 10px;
-font-size: 22px;
+.theme_toogle_btn:hover {
+    background-size: 85%;
+    transition: 0.5s;
+    transform: rotate(90deg);
 }
 
-.done span {
-text-decoration: line-through;
-user-select: none;
+.heading {
+    font-size: 30px;
 }
 
-input[type="checkbox"] {
-display: none;
-}
-input:focus {
-outline: none;
-background-color: #d4e7d5;
+.tasks {
+    margin: 20px 0px;
+    overflow: hidden;
+    padding-right: 15p;
 }
 
-.tick {
-width: 30px;
-height: 30px;
-border: 3px solid var(--color);
-border-radius: 50%;
-display: inline-flex;
-justify-content: center;
-align-items: center;
-cursor: pointer;
+#tasksList {
+    padding: 0px;
 }
 
-.tick::before {
-content: "✔️";
-font-size: 20px;
-display: none;
+.task_list_empty {
+    transition: 0s;
+    background-position: center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-image: var(--container-bg);
 }
 
-.done .tick::before {
-display: inline;
+.task_item {
+    list-style-type: none;
+    border: 1px var(--secondary-color) solid;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 7px;
+    margin-bottom: 20px;
+    background-color: var(--task-color);
+    color: var(--text-color);
 }
 
-.delete-todo {
-border: none;
-background-color: transparent;
-outline: none;
-cursor: pointer;
+.task_item:hover {
+    transition: 0.5s;
+    /* border: 1px rgba(148, 148, 148, 0.63) solid; */
+    cursor: pointer;
+    background-color: rgba(226, 226, 226, 0.192);
 }
 
-.delete-todo svg {
-width: 30px;
-height: 30px;
-pointer-events: none;
+.task_check_btn {
+    width: 10px;
+    height: 10px;
+    margin-right: 16px;
+    padding: 3px;
+    border: 2px var(--secondary-color) solid;
+    /* color: var(--primary-color); */
+    background-position: center;
+    background-size: contain;
+    border-radius: 50%;
+    border: 2px grey solid;
+    cursor: pointer;
 }
 
-form {
-width: 100%;
-display: flex;
-justify-content: space-between;
-margin-bottom: 2rem;
+.task_check_btn:hover {
+    background-image: url("assets/complete.svg");
+    /* opacity: 0.5; */
+    filter: var(--filter);
 }
 
-input[type="text"] {
-width: 100%;
-padding: 10px;
-border-radius: 4px;
-border: 3px solid #333;
+.task_bio {
+    font-size: 18px;
 }
 
-/* Add this below all the other styles */
-
-.empty-state {
-flex-direction: column;
-align-items: center;
-justify-content: center;
-display: none;
+.task-completed {
+    transition: 0.5s;
+    transform: scale(90%);
+    text-decoration: line-through;
+    color: rgb(150, 150, 150);
+    opacity: 0;
 }
 
-.checklist-icon {
-margin-bottom: 20px;
+footer {
+    position: absolute;
+    bottom: 0px;
+    padding: 15px 10px;
+    min-width: 100%;
+    background-color: var(--footer-color);
+    left: 0px;
+    border: 5px var(--footer-color) solid;
 }
 
-.empty-state__title,
-.empty-state__description {
-/* margin-bottom: 20px; */
-font-size: 25px;
-text-align: center;
-margin: 2rem;
-width: 25rem;
+footer form {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
 }
 
-/* Add this below the other styles */
-.todo-list:empty {
-display: none;
+#new_task_input {
+    min-width: 250px;
+    margin-right: 40px;
+    font-size: 20px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px rgba(255, 255, 255, 0.267) solid;
 }
 
-.todo-list:empty + .empty-state {
-display: flex;
+#new_task_input::placeholder {
+    color: rgba(255, 255, 255, 0.589);
+    font-size: 20px;
+    font-family: "Times New Roman";
 }
 
-@media (max-width: 608px) {
-.container {
-width: 90%;
-margin: auto;
+#new_task_input_btn {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    background-image: url("./assets/new.svg");
+    background-repeat: no-repeat;
+    background-size: 80%;
+    cursor: pointer;
 }
-.app-title {
-font-size: 3rem;
+
+.taskCompleted {
+    visibility: hidden;
 }
-.empty-state__title,
-.empty-state__description {
-font-size: 1.5rem;
-width: 18rem;
-}
-/*   .btn {
-position: absolute;
-right: -1rem;
-} */
-em {
-display: none;
-}
+
+@media screen and (max-width: 600px) {
+    body {
+        margin: 0px;
+        padding: 0px;
+        align-items: flex-start;
+        height: 100vh;
+        background-color: var(--bg-color);
+    }
+
+    .theme_toogle {
+        margin-top: 30px;
+    }
+
+    .container {
+        border: none;
+        border-radius: 0px;
+        width: 100%;
+        height: 93vh;
+        padding: 0px 20px;
+    }
+
+    #new_task_input {
+        margin-right: 20px;
+    }
 }
