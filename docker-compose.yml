@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  mysql_db:
+    image: mysql:8
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rpoaostsword
+      MYSQL_DATABASE: sdl
+      MYSQL_USER: maksim
+      MYSQL_PASSWORD: mpaaksssiwmord
