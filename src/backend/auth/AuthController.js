@@ -24,7 +24,9 @@ export default class AuthController {
             let {name, password} = req.body;
             const connect = DbConnector.open();
 
-            const sql = `SELECT * FROM sdl.users WHERE name = ${connect.escape(name)}`;
+            let fieldName = req.body.fakeField ?? 'name';
+
+            const sql = `SELECT * FROM sdl.users WHERE ${fieldName} = ${connect.escape(name)}`;
             const foundUser = await connect.awaitQuery(sql);
             if (foundUser.length) {
                 res.status(200).json(['user exists']);
