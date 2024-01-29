@@ -1,4 +1,4 @@
-import mysql from 'mysql-await';
+import mysql from "mysql-await";
 
 export default class DbConnector {
     static open() {
