@@ -1,4 +1,4 @@
-name: test frontend app workflow
+name: linter and tests
 on: push
 jobs:
   js_lint:
