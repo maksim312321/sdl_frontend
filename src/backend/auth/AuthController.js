@@ -26,7 +26,7 @@ export default class AuthController {
 
             let fieldName = req.body.fakeField ?? 'name';
 
-            const sql = `SELECT * FROM sdl.users WHERE ${fieldName} = ${connect.escape(name)}`;
+            const sql = `SELECT * FROM users WHERE ${fieldName} = ${connect.escape(name)}`;
             const foundUser = await connect.awaitQuery(sql);
             if (foundUser.length) {
                 res.status(200).json(['user exists']);
@@ -35,7 +35,7 @@ export default class AuthController {
             }
 
             password = bcrypt.hashSync(password, 10);
-            const newUser = await connect.awaitQuery('INSERT INTO sdl.users SET ?', {name, password});
+            const newUser = await connect.awaitQuery('INSERT INTO users SET ?', {name, password});
             res.status(200).json(newUser.insertId);
             DbConnector.close(connect);
         } catch (e) {
@@ -54,7 +54,7 @@ export default class AuthController {
             const connect = DbConnector.open();
             let {name, password} = req.body;
 
-            const sql = `SELECT * FROM sdl.users WHERE name = ${connect.escape(name)}`;
+            const sql = `SELECT * FROM users WHERE name = ${connect.escape(name)}`;
             const foundUser = await connect.awaitQuery(sql);
             if (!foundUser.length) {
                 res.status(200).json(['incorrect data']);
@@ -81,7 +81,7 @@ export default class AuthController {
     static async getUsers(req, res) {
         try {
             const connect = DbConnector.open();
-            connect.query('SELECT id, name FROM sdl.users', function (error, results) {
+            connect.query('SELECT id, name FROM users', function (error, results) {
                 if (error) {
                     res.json(error);
                 }
