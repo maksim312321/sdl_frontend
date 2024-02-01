@@ -45,7 +45,7 @@ jobs:
       #   env:
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   deploy:
-    needs: [sonar, js_test, js_lint]
+    needs: [js_test, js_lint]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
