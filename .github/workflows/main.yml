@@ -47,7 +47,6 @@ jobs:
   deploy:
     needs: [js_test, js_lint]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
