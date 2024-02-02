@@ -41,7 +41,6 @@ jobs:
         TARGET: ${{ secrets.REMOTE_TARGET }}
         SCRIPT_AFTER: |
           whoami
-          git pull
 #  sonar:
 #    name: sonar
 #    runs-on: ubuntu-latest
