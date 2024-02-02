@@ -30,6 +30,7 @@ jobs:
     name: deploy
     needs: [js_test, js_lint]
     runs-on: ubuntu-latest
+    environment: deploy
     steps:
     - name: Get source code
       uses: actions/checkout@v3
