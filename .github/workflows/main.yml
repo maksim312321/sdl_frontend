@@ -39,10 +39,13 @@ jobs:
       uses: easingthemes/ssh-deploy@main
       with:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        ARGS: >-
+          -rltgoDzvO
+          --exclude='.git'
+          --exclude='node_modules/'
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: ${{ secrets.REMOTE_TARGET }}
-        EXCLUDE: "/node_modules/"
 #  sonar:
 #    name: sonar
 #    runs-on: ubuntu-latest
