@@ -6,29 +6,29 @@ on:
       - master
 
 jobs:
-#  js_lint:
-#    name: js_lint
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Get source code
-#        uses: actions/checkout@v3
-#      - name: Install dependencies
-#        run: npm ci
-#      - name: Run lint
-#        run: npm run lint
-#  js_test:
-#    name: js_test
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Get source code
-#        uses: actions/checkout@v3
-#      - name: Install dependencies
-#        run: npm ci
-#      - name: Run js test
-#        run: npm run test
+  js_lint:
+    name: js_lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get source code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Run lint
+        run: npm run lint
+  js_test:
+    name: js_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get source code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Run js test
+        run: npm run test
   deploy:
     name: deploy
-#    needs: [js_test, js_lint]
+    needs: [js_test, js_lint]
     runs-on: ubuntu-latest
     steps:
     - name: Get source code
