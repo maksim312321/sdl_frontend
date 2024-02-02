@@ -39,12 +39,9 @@ jobs:
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: ${{ secrets.REMOTE_TARGET }}
-        SCRIPT_BEFORE: |
-          whoami
-          ls -al
         SCRIPT_AFTER: |
           whoami
-          ls -al
+          git pull
 #  sonar:
 #    name: sonar
 #    runs-on: ubuntu-latest
