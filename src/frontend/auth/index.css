@@ -1,0 +1,7 @@
+#regForm,
+#loginForm {
+    width: 300px;
+    border: 1px solid #dddddd;
+    margin: 100px auto;
+    padding: 10px;
+}

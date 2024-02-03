@@ -10,9 +10,8 @@ export default function (req, res, next) {
         let token = req.cookies?.authorization?.split(' ')[1];
 
         if (!token) {
-            return res.status(403).json({
-                message: 'not auth'
-            });
+            res.redirect('/login');
+            return;
         }
 
         const decoded = jwt.verify(token, config.secret);
@@ -20,8 +19,7 @@ export default function (req, res, next) {
         next();
     } catch (e) {
         console.log(e);
-        return res.status(403).json({
-            message: 'not auth'
-        });
+        res.redirect('/login');
+        return;
     }
 };
