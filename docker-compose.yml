@@ -11,3 +11,5 @@ services:
       MYSQL_DATABASE: sdl
       MYSQL_USER: maksim
       MYSQL_PASSWORD: mpaaksssiwmord
+    volumes:
+      - ./mysql:/var/lib/mysql
