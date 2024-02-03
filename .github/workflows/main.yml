@@ -39,7 +39,7 @@ jobs:
 #          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
   deploy:
     name: deploy
-    needs: [js_test, js_lint]
+    needs: [tests, linter]
     runs-on: ubuntu-latest
     environment: deploy_env
     steps:
