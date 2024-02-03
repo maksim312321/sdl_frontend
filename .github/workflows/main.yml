@@ -67,26 +67,13 @@ jobs:
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: ${{ secrets.TARGET }}
         EXCLUDE: "/dist/, /node_modules/"
-
-
-
-
-#  deploy:
-#    needs: [js_test, js_lint]
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v3
-#      - name: Run command on remote server
-#        uses: D3rHase/ssh-command-action@v0.2.2
-#        with:
-#          host: ${{secrets.SSH_HOST}}
-#          user: ${{secrets.SSH_USER}}
-#          private_key: ${{secrets.SSH_PRIVATE_KEY}}
-#          command: |
-#            cd ${{ secrets.PROJECT_FOLDER }};
-#            git checkout master;
-#            git pull;
-##            docker-compose --file docker-compose.prod.yml down;
-##            docker-compose --file docker-compose.prod.yml up -d;
-##            docker system prune --all --force;
+  pinger:
+    name: ping host
+    needs: [  deploy]
+    runs-on: ubuntu-latest
+    env:
+      URL: ${{ secrets.REMOTE_HOST }}
+      METHOD: GET
+    steps:
+      - id: ping
+        uses: sisodiya2421/pinger@master
