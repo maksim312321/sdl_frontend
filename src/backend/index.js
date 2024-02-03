@@ -10,7 +10,7 @@ const PORT = 80;
 const app = express();
 
 const FRONTEND_PATH = path.resolve() + '/src/frontend';
-app.use(express.json());
+pp.use(express.json());
 app.use(cookieParser());
 app.use('/auth', authRouter);
 
