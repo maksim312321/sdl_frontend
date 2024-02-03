@@ -5,12 +5,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": " nodemon ./src/backend/index.js",
-    "start": " node ./src/backend/index.js",
+    "serve": "npm-run-all --parallel watch:server watch:build",
+    "watch:build": "webpack --watch --mode development",
+    "watch:server": "nodemon ./src/backend/index.js",
+    "start": "node ./src/backend/index.js",
     "lint": "./node_modules/.bin/eslint ./src",
     "test": "jest",
     "lint_fix": "./node_modules/.bin/eslint --fix ./src",
-    "build": "webpack"
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -35,7 +37,8 @@
     "jsonwebtoken": "^9.0.2",
     "mysql": "github:mysqljs/mysql",
     "mysql-await": "^2.2.3",
-    "nodemon": "^3.0.2"
+    "nodemon": "^3.0.3",
+    "npm-run-all": "^4.1.5"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.6",

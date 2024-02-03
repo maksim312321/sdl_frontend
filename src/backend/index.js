@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import express from 'express';
 import path from 'path';
-import mysql from 'mysql';
 import authRouter from './auth/authRouter.js';
 import authMiddleware from './middleware/authMiddleware.js';
 import cookieParser from 'cookie-parser';
