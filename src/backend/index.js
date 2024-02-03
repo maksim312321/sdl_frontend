@@ -15,6 +15,8 @@ app.use(cookieParser());
 app.use('/auth', authRouter);
 
 // todo: вынести руты
+app.use(express.static(path.resolve() + '/node_modules/bootstrap/dist/css'));
+
 app.get('/', (req, res) => {
     app.use(express.static(FRONTEND_PATH));
     res.sendFile(path.resolve(FRONTEND_PATH, 'index.html'));
