@@ -6,8 +6,8 @@ on:
       - master
 
 jobs:
-  js_lint:
-    name: js_lint
+  linter:
+    name: linter
     runs-on: ubuntu-latest
     steps:
       - name: Get source code
@@ -16,8 +16,8 @@ jobs:
         run: npm install
       - name: Run lint
         run: npm run lint
-  js_test:
-    name: js_test
+  tests:
+    name: tests
     runs-on: ubuntu-latest
     steps:
       - name: Get source code
