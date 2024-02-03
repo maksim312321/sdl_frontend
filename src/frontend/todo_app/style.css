@@ -4,6 +4,10 @@
     --text-color: black;
     --task-color: white;
     --footer-color: #1e1e1e;
+
+    --dark-theme-btn: url("assets/Light-theme-btn.svg");
+    --dark-container-bg: url("assets/Dark-empty.svg");
+
     --theme-btn: url("assets/Dark-theme-btn.svg");
     --container-bg: url("./assets/Light-empty.svg");
     --complete-icon: url("assets/complete.svg");
@@ -66,6 +70,10 @@ header {
     cursor: pointer;
 }
 
+.theme_toogle_btn--dark {
+    background-image: var(--dark-theme-btn);
+}
+
 .theme_toogle_btn:hover {
     background-size: 85%;
     transition: 0.5s;
@@ -92,6 +100,10 @@ header {
     background-size: 50%;
     background-repeat: no-repeat;
     background-image: var(--container-bg);
+}
+
+.task_list_empty--dark {
+    background-image: var(--dark-container-bg);
 }
 
 .task_item {
@@ -215,4 +227,20 @@ footer form {
     #new_task_input {
         margin-right: 20px;
     }
+}
+
+.svg-holder-1 {
+    background-image: url("./assets/Dark-empty.svg");
+}
+
+.svg-holder-2 {
+    background-image: url("./assets/Dark-theme-btn.svg");
+}
+
+.svg-holder-3 {
+    background-image: url("./assets/Light-empty.svg");
+}
+
+.svg-holder-4 {
+    background-image: url("./assets/Light-theme-btn.svg");
 }

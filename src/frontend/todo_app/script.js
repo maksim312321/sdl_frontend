@@ -78,15 +78,9 @@ themeBtn.addEventListener('click', function () {
         root.style.setProperty('--text-color', '#EAEAEA');
         root.style.setProperty('--task-color', '#3B3B3B');
         root.style.setProperty('--footer-color', '#1E1E1E');
-        root.style.setProperty(
-            '--theme-btn',
-            'url(\'assets/Light-theme-btn.svg\')'
-        );
-        root.style.setProperty(
-            '--container-bg',
-            'url(\'./assets/Dark-empty.svg\')'
-        );
         root.style.setProperty('--filter', 'invert()');
+        document.querySelector('.theme_toogle_btn').classList.add('theme_toogle_btn--dark');
+        document.querySelector('.task_list_empty').classList.add('task_list_empty--dark');
     } else {
         root.style.setProperty('transition', '1s');
         root.style.setProperty('--primary-color', 'white');
@@ -94,13 +88,9 @@ themeBtn.addEventListener('click', function () {
         root.style.setProperty('--text-color', 'black');
         root.style.setProperty('--task-color', 'white');
         root.style.setProperty('--footer-color', '#1E1E1E');
-        root.style.setProperty(
-            '--theme-btn',
-            'url(\'assets/Dark-theme-btn.svg\')'
-        );
-        root.style.setProperty(
-            '--container-bg',
-            'url(\'./assets/Light-empty.svg\')'
-        );
+        document.querySelector('.theme_toogle_btn').classList.remove('theme_toogle_btn--dark');
+        document.querySelector('.task_list_empty').classList.remove('task_list_empty--dark');
     }
 });
+
+import './style.css';
