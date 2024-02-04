@@ -49,6 +49,7 @@ header {
 .heading {
     font-weight: 900;
     color: var(--text-color);
+    font-size: 30px;
 }
 
 .theme_toogle {
@@ -78,10 +79,6 @@ header {
     background-size: 85%;
     transition: 0.5s;
     transform: rotate(90deg);
-}
-
-.heading {
-    font-size: 30px;
 }
 
 .tasks {

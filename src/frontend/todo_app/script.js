@@ -1,15 +1,14 @@
-// Variables
-var root = document.querySelector(':root');
-var container = document.querySelector('.container');
-var newTaskInput = document.getElementById('new_task_input');
-var taskform = document.getElementById('new_task_form');
-var tasksList = document.getElementById('tasksList');
-var taskBtns = document.querySelectorAll('.task_check_btn');
-var themeBtn = document.querySelector('.theme_toogle_btn');
+let root = document.querySelector(':root');
+let container = document.querySelector('.container');
+let newTaskInput = document.getElementById('new_task_input');
+let taskform = document.getElementById('new_task_form');
+let tasksList = document.getElementById('tasksList');
+let taskBtns = document.querySelectorAll('.task_check_btn');
+let themeBtn = document.querySelector('.theme_toogle_btn');
 // Do this when we submit the form
 taskform.addEventListener('submit', function (e) {
     e.preventDefault();
-    var newtaskInputValue = taskform.elements.new_task_input;
+    let newtaskInputValue = taskform.elements.new_task_input;
 
     addTask(newtaskInputValue.value);
 
@@ -50,7 +49,7 @@ function addTask(newTask) {
 // To remove the completed task
 function onTaskComplete(btns) {
     btns.addEventListener('click', function (element) {
-        var parents = element.target.parentElement;
+        let parents = element.target.parentElement;
         parents.classList.add('task-completed'); // To slide out the task to the right
         // Now we delete that tast which we have slided out
         setTimeout(() => {
@@ -69,7 +68,7 @@ function onTaskComplete(btns) {
 // Dark mode
 
 themeBtn.addEventListener('click', function () {
-    var darkTheme = themeBtn.classList.toggle('dark');
+    let darkTheme = themeBtn.classList.toggle('dark');
 
     if (darkTheme) {
         root.style.setProperty('--theme-transition', '1s');

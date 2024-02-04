@@ -1,7 +1,6 @@
 // webpack.config.js
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import SvgChunkWebpackPlugin from 'svg-chunk-webpack-plugin';
 
 export default {
     entry: {
