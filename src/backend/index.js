@@ -47,7 +47,7 @@ app.get('/reg', (req, res) => {
 
 app.get('/login', (req, res) => {
     res.set({
-        'auth' : 'none',
+        'auth': 'none',
     });
     app.use('/auth', express.static(BUILD_PATH + '/auth'));
     res.sendFile(path.resolve(BUILD_PATH, 'login', 'index.html'));
