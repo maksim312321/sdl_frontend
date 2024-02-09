@@ -64,7 +64,7 @@ jobs:
           sudo systemctl restart sdl
   pinger:
     name: ping host
-    needs: [  deploy]
+    needs: [deploy]
     runs-on: ubuntu-latest
     env:
       URL: ${{ secrets.REMOTE_HOST }}
@@ -72,3 +72,14 @@ jobs:
     steps:
       - id: ping
         uses: sisodiya2421/pinger@master
+  check_auth:
+    name: check auth require resources
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Stage
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'http://45.143.92.132/'
+          method: 'GET'
+          run: |
+            echo ${{ steps.myRequest.outputs.headers }}
