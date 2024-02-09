@@ -19,6 +19,7 @@ export default class AuthController {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 res.status(400).json({message: 'Registration error', errors});
+                return;
             }
 
             let {name, password} = req.body;
