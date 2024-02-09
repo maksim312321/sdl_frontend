@@ -82,5 +82,8 @@ jobs:
           url: 'http://45.143.92.132/'
           method: 'GET'
       - name: Show Response
-        run: |
-          echo ${{ steps.myRequest.outputs.headers }}
+        if: ${{ steps.myRequest.outputs.headers.auth }} != 'none'
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('Обнаружен доступ без авторизации')
