@@ -1,2 +1,2 @@
 #!/bin/bash
-echo ${{ HEADERS }}
+echo '123'
