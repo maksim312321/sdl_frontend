@@ -89,6 +89,8 @@ jobs:
       - name: Show Response
         run: |
            $IsSuccess = '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
+           echo $IsSuccess
+      - name: Show Response
         if: $IsSuccess == 'false'
         uses: actions/github-script@v3
         with:
