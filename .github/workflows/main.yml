@@ -76,8 +76,6 @@ jobs:
     name: check auth require resources
     runs-on: ubuntu-latest
     steps:
-      - name: 'Setup jq'
-        uses: dcarbone/install-jq-action@v2
       - name: Get source code
         uses: actions/checkout@v3
       - name: Make Request
@@ -90,7 +88,6 @@ jobs:
         run: sh ./.github/scripts/check_auth.sh
         env:
           HEADERS: ${{ steps.myRequest.outputs.headers }}
-          jq: jq
 #      - name: Deploy Stage
 #        uses: fjogeleit/http-request-action@v1
 #        with:

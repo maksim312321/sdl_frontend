@@ -1,3 +1,4 @@
 #!/bin/bash
-value=($(jq -r '.auth' $HEADERS))
-echo "${value[@]}"
+echo jq
+#value=($(jq -r '.auth' $HEADERS))
+#echo "${value[@]}"
