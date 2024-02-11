@@ -87,9 +87,14 @@ jobs:
       - name: Show Response
         run: |
           tests="$(echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth')";
-          echo "NEED=$(echo $tests)" >> "$GITHUB_ENV"
+          if [[ $tests == 'none' ]]; then
+              echo "NEED=true" >> "$GITHUB_ENV"
+          else
+              echo "NEED=false" >> "$GITHUB_ENV"
+          fi
+#          echo "NEED=$(echo $tests)" >> "$GITHUB_ENV"
       - name: Skip Deploy?
-        if: env.NEED == 'none'
+        if: env.NEED == 'true'
         run: echo $NEED
 #      - name: check Response
 #        run: |
