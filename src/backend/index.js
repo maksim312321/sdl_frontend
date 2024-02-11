@@ -16,7 +16,7 @@ app.use('/auth', authRouter);
 // todo: вынести руты
 app.use(express.static(path.resolve() + '/node_modules/bootstrap/dist/css'));
 
-app.get('/', (req, res) => {
+app.get('/', authMiddleware, (req, res) => {
     app.use('/main', express.static(BUILD_PATH + '/main'));
     res.sendFile(path.resolve(BUILD_PATH, 'main', 'index.html'));
 });
