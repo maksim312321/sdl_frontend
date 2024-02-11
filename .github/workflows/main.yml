@@ -84,11 +84,16 @@ jobs:
         with:
           url: 'http://45.143.92.132/'
           method: 'GET'
-#      - name: 'Setup jq'
-#        uses: dcarbone/install-jq-action@v2
       - name: Show Response
-        run: |
-          echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
+        if: ('${{ steps.myRequest.outputs.headers }}' | jq '.auth' != 'none')
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('envA and envB are not equivalent!')
+
+#      - name: Show Response
+#        run: |
+#           echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
 
 
 #      - name: Deploy Stage
