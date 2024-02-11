@@ -87,15 +87,13 @@ jobs:
       - name: 'Setup jq'
         uses: dcarbone/install-jq-action@v2
       - name: Show Response
-        if: ('{"auth":"none"}' | jq '.auth') == 'none'
-        uses: actions/github-script@v3
-        with:
-          script: |
-            core.setFailed('job fail 1')
-
-#      - name: Show Response
-#        run: |
-#           echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
+        run: |
+           echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
+#        if: ('{"auth":"none"}' | jq '.auth') == 'none'
+#        uses: actions/github-script@v3
+#        with:
+#          script: |
+#            core.setFailed('job fail 1')
 
 
 #      - name: Deploy Stage
