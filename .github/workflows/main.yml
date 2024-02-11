@@ -85,9 +85,13 @@ jobs:
           url: 'http://45.143.92.132/'
           method: 'GET'
       - name: Show Response
-        run: sh ./.github/scripts/check_auth.sh
-        env:
-          HEADERS: ${{ steps.myRequest.outputs.headers }}
+        run: |
+          ${{ steps.myRequest.outputs.headers }} | jq -r '.version'
+#        run: sh ./.github/scripts/check_auth.sh
+#        env:
+#          HEADERS: ${{ steps.myRequest.outputs.headers }}
+
+
 #      - name: Deploy Stage
 #        uses: fjogeleit/http-request-action@v1
 #        with:
