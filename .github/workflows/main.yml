@@ -89,7 +89,7 @@ jobs:
       - name: Show Response
         run: |
           test = ${{ steps.myRequest.outputs.headers }} | jq '.auth'
-          echo test
+          echo $test
 
 
 #      - name: Deploy Stage
