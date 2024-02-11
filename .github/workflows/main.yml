@@ -70,6 +70,10 @@ jobs:
       URL: ${{ secrets.REMOTE_HOST }}
       METHOD: GET
     steps:
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '30s'
       - id: ping
         uses: sisodiya2421/pinger@master
   check_auth:
