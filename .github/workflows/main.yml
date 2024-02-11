@@ -86,7 +86,7 @@ jobs:
           method: 'GET'
       - name: Show Response
         run: |
-          echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
+          echo "NEED='${{ steps.myRequest.outputs.headers }}' | jq '.auth'" >> "$GITHUB_ENV"
 #          if '${{ steps.myRequest.outputs.headers }}' | jq '.auth' == 'none'; then
 #            echo "NEED=true" >> "$GITHUB_ENV"
 #          else
