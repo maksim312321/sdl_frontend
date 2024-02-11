@@ -90,6 +90,7 @@ jobs:
         run: sh ./.github/scripts/check_auth.sh
         env:
           HEADERS: ${{ steps.myRequest.outputs.headers }}
+          jq: jq
 #      - name: Deploy Stage
 #        uses: fjogeleit/http-request-action@v1
 #        with:
