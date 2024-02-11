@@ -87,7 +87,7 @@ jobs:
       - name: Show Response
         run: |
           tests="$(echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth')";
-          if ["$tests" == "none"]; then
+          if [[ tests == *"none"* ]]; then
               echo "NEED=true" >> "$GITHUB_ENV"
           else
               echo "NEED=false" >> "$GITHUB_ENV"
