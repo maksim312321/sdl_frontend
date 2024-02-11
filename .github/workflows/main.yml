@@ -87,7 +87,7 @@ jobs:
       - name: 'Setup jq'
         uses: dcarbone/install-jq-action@v2
       - name: Show Response
-        if: ('{"auth":"none"}' | jq '.auth' == 'none')
+        if: ('{"auth":"none"}' | jq '.auth') == 'none'
         uses: actions/github-script@v3
         with:
           script: |
