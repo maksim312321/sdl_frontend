@@ -87,10 +87,10 @@ jobs:
       - name: Show Response
         run: |
           tests="$(echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth')";
-          echo "NEED=$(echo $tests)" >> $GITHUB_ENV
+          echo "NEED=$(echo $tests)" >> "$GITHUB_ENV"
       - name: Skip Deploy?
         if: env.NEED == 'none'
-        run: echo "Only pushing to 'master' causes automatic deployment"
+        run: echo $NEED
 #      - name: check Response
 #        run: |
 #          if [[ $NEED == 'none' ]]; then
