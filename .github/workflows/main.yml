@@ -86,7 +86,7 @@ jobs:
           method: 'GET'
       - name: Show Response
         run: |
-          var='123'
+          var='${{ steps.myRequest.outputs.headers }}' | jq '.auth'
           echo "NEED=$var" >> $GITHUB_ENV
           echo $var
       - name: check Response
