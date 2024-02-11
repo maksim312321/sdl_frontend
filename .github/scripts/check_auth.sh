@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $HEADERS['auth']
+echo $HEADERS.auth
