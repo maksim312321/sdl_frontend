@@ -75,8 +75,6 @@ jobs:
   check_auth:
     name: check auth require resources
     runs-on: ubuntu-latest
-    env:
-     IsSuccess: 'false'
     steps:
       - name: Get source code
         uses: actions/checkout@v3
@@ -88,10 +86,10 @@ jobs:
           method: 'GET'
       - name: Show Response
         run: |
-           $IsSuccess = '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
-           echo $IsSuccess
+           env.IsSuccess = '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
+           echo env.IsSuccess
       - name: Show Response
-        if: $IsSuccess == 'false'
+        if: env.IsSuccess != 'none'
         uses: actions/github-script@v3
         with:
           script: |
