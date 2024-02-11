@@ -88,6 +88,7 @@ jobs:
         run: |
           $var = '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
           echo "NEED=$var" >> "$GITHUB_ENV"
+          echo env.NEED
 #          if '${{ steps.myRequest.outputs.headers }}' | jq '.auth' == 'none'; then
 #            echo "NEED=true" >> "$GITHUB_ENV"
 #          else
