@@ -86,12 +86,8 @@ jobs:
           method: 'GET'
       - name: Show Response
         run: |
-          tests='${{ steps.myRequest.outputs.headers }}'
-          $tests=$tests | jq '.auth'
+          tests="$(echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth'"
           echo $tests
-#
-#          echo "NEED=${tests}" >> $GITHUB_ENV
-#          echo $tests
       - name: check Response
         if: env.NEED == 'none'
         uses: actions/github-script@v3
