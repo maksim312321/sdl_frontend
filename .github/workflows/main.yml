@@ -89,23 +89,8 @@ jobs:
           tests="$(echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth')";
           echo "NEED=$(echo $tests)" >> $GITHUB_ENV
       - name: check Response
-        if: ${{ env.NEED }} == 'none'
+        if: ${{ env.NEED }} == 'none1'
         uses: actions/github-script@v3
         with:
           script: |
             core.setFailed('envA and envB are not equivalent!')
-#        run: |
-#          if $NEED == 'none'; then
-#            exit 1
-
-#      - name: Deploy Stage
-#        uses: fjogeleit/http-request-action@v1
-#        with:
-#          url: 'http://45.143.92.132/'
-#          method: 'GET'
-#      - name: Show Response
-#        if: ${{ steps.myRequest.outputs.headers.auth }} != 'none'
-#        uses: actions/github-script@v3
-#        with:
-#          script: |
-#            core.setFailed('Обнаружен доступ без авторизации')
