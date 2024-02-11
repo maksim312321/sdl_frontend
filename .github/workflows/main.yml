@@ -86,7 +86,7 @@ jobs:
           method: 'GET'
       - name: Show Response
         run: |
-          echo ${{ steps.myRequest.outputs.headers }}
+          echo (${{ steps.myRequest.outputs.headers }} | jq '.auth')
 
 
 #      - name: Deploy Stage
