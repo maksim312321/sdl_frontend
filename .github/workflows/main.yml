@@ -92,19 +92,6 @@ jobs:
           else
               echo "NEED=false" >> "$GITHUB_ENV"
           fi
-          echo "CURR=$(echo $tests)" >> "$GITHUB_ENV"
       - name: Skip Deploy?
-        if: env.NEED == 'true'
-        run: |
-          echo $NEED
-          echo $CURR
-#      - name: check Response
-#        run: |
-#          if [[ $NEED == 'none' ]]; then
-#               exit 1
-#          fi
-#        if: ${{ env.NEED }} != 'none'
-#        uses: actions/github-script@v3
-#        with:
-#          script: |
-#            core.setFailed('envA and envB are not equivalent!')
+        if: env.NEED == 'false'
+        run: exit 1
