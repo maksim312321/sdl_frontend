@@ -76,6 +76,8 @@ jobs:
     name: check auth require resources
     runs-on: ubuntu-latest
     steps:
+      - name: Get source code
+        uses: actions/checkout@v3
       - name: Make Request
         id: myRequest
         uses: fjogeleit/http-request-action@v1
