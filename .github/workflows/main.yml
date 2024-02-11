@@ -87,8 +87,9 @@ jobs:
       - name: Show Response
         run: |
           tests='${{ steps.myRequest.outputs.headers }}'
+          $tests=$tests | jq '.auth'
           echo $tests
-#          | jq '.auth'
+#
 #          echo "NEED=${tests}" >> $GITHUB_ENV
 #          echo $tests
       - name: check Response
