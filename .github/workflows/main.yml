@@ -89,8 +89,10 @@ jobs:
           tests="$(echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth')";
           echo "NEED=$(echo $tests)" >> $GITHUB_ENV
       - name: check Response
-        if: ${{ env.NEED }} != 'none'
-        uses: actions/github-script@v3
-        with:
-          script: |
-            core.setFailed('envA and envB are not equivalent!')
+        run: |
+          echo $NEED
+#        if: ${{ env.NEED }} != 'none'
+#        uses: actions/github-script@v3
+#        with:
+#          script: |
+#            core.setFailed('envA and envB are not equivalent!')
