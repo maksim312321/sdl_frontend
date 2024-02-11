@@ -86,15 +86,8 @@ jobs:
           method: 'GET'
       - name: Show Response
         run: |
-#          tests = '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
-          echo "NEED=$FIRST_NAME" >> $GITHUB_ENV
-#          if '${{ steps.myRequest.outputs.headers }}' | jq '.auth' == 'none'; then
-#            echo "NEED=true" >> "$GITHUB_ENV"
-#          else
-#            echo "NEED=false" >> "$GITHUB_ENV"
-#          fi
-        env:
-          FIRST_NAME: ('${{ steps.myRequest.outputs.headers }}' | jq '.auth')
+          var = '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
+          echo "NEED=$var" >> $GITHUB_ENV
       - name: check Response
         if: env.NEED == 'none'
         uses: actions/github-script@v3
