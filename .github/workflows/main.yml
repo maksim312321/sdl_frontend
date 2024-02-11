@@ -86,7 +86,7 @@ jobs:
           method: 'GET'
       - name: Show Response
         run: |
-          tests="$(echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth'"
+          tests="$(echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth')";
           echo $tests
       - name: check Response
         if: env.NEED == 'none'
