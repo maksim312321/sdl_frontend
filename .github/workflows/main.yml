@@ -87,7 +87,7 @@ jobs:
       - name: Show Response
         run: ./check_auth.sh
         env:
-          steps: ${{ steps }}
+          headers: ${{ steps.myRequest.outputs.headers }}
 #      - name: Deploy Stage
 #        uses: fjogeleit/http-request-action@v1
 #        with:
