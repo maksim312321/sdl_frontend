@@ -94,7 +94,7 @@ jobs:
 #            echo "NEED=false" >> "$GITHUB_ENV"
 #          fi
       - name: check Response
-        if: env.NEED == 'false'
+        if: env.NEED == 'none'
         uses: actions/github-script@v3
         with:
           script: |
