@@ -76,21 +76,17 @@ jobs:
     name: check auth require resources
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          repository: marcuslindblom/security-headers
-      - uses: iamazeem/security-headers@main
+      - name: Get source code
+        uses: actions/checkout@v3
+      - name: Make Request
+        id: myRequest
+        uses: fjogeleit/http-request-action@v1
         with:
           url: 'http://45.143.92.132/'
-          grade: A
-#      - name: Get source code
-#        uses: actions/checkout@v3
-#      - name: Make Request
-#        id: myRequest
-#        uses: fjogeleit/http-request-action@v1
-#        with:
-#          url: 'http://45.143.92.132/'
-#          method: 'GET'
+          method: 'GET'
+      - name: Show Response
+        run: |
+          echo ${{ steps.myRequest.outputs.headers }}
 
 
 #      - name: Deploy Stage
