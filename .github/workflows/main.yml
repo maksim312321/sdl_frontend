@@ -75,6 +75,8 @@ jobs:
   check_auth:
     name: check auth require resources
     runs-on: ubuntu-latest
+    env:
+     IsSuccess: 'false'
     steps:
       - name: Get source code
         uses: actions/checkout@v3
@@ -84,16 +86,14 @@ jobs:
         with:
           url: 'http://45.143.92.132/'
           method: 'GET'
-      - name: 'Setup jq'
-        uses: dcarbone/install-jq-action@v2
       - name: Show Response
         run: |
-           echo '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
-#        if: ('{"auth":"none"}' | jq '.auth') == 'none'
-#        uses: actions/github-script@v3
-#        with:
-#          script: |
-#            core.setFailed('job fail 1')
+           $IsSuccess = '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
+        if: $IsSuccess == 'false'
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('job fail 1')
 
 
 #      - name: Deploy Stage
