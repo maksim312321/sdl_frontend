@@ -94,7 +94,7 @@ jobs:
           fi
           echo "CURR=$(echo $tests)" >> "$GITHUB_ENV"
       - name: Skip Deploy?
-        if: env.NEED != 'true'
+        if: env.NEED == 'true'
         run: |
           echo $NEED
           echo $CURR
