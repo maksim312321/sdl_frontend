@@ -90,7 +90,9 @@ jobs:
           echo "NEED=$(echo $tests)" >> $GITHUB_ENV
       - name: check Response
         run: |
-          echo $NEED
+          if [[ $NEED == 'none' ]]; then
+               exit 1
+          fi
 #        if: ${{ env.NEED }} != 'none'
 #        uses: actions/github-script@v3
 #        with:
