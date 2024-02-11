@@ -76,13 +76,6 @@ jobs:
     name: check auth require resources
     runs-on: ubuntu-latest
     steps:
-      - name: 'Setup jq'
-        uses: dcarbone/install-jq-action@v2
-      - name: 'Check jq'
-        # language=sh
-        run: |
-          which jq
-          jq --version
       - name: Get source code
         uses: actions/checkout@v3
       - name: Make Request
@@ -91,9 +84,21 @@ jobs:
         with:
           url: 'http://45.143.92.132/'
           method: 'GET'
-      - name: Show Response
+      - name: Extract all keywords from headers
+        uses: sergeysova/jq-action@v2
+        id: headers
+        with:
+          cmd: 'jq .keywords[] $steps.myRequest.outputs.headers -r'
+          multiline: true
+      - name: Show keywords
         run: |
-          ${{ steps.myRequest.outputs.headers }} | jq -r '.version'
+          keywords="${{ steps.keywords.outputs.value }}"
+          for keyword in $keywords; do
+            echo "$keyword"
+          done
+#      - name: Show Response
+#        run: |
+#          ${{ steps.myRequest.outputs.headers }} | jq -r '.version'
 #        run: sh ./.github/scripts/check_auth.sh
 #        env:
 #          HEADERS: ${{ steps.myRequest.outputs.headers }}
