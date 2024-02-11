@@ -86,14 +86,15 @@ jobs:
           method: 'GET'
       - name: Show Response
         run: |
-          tests = 16
-#          '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
-          echo "NEED=$tests" >> $GITHUB_ENV
+#          tests = '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
+          echo "NEED=$FIRST_NAME" >> $GITHUB_ENV
 #          if '${{ steps.myRequest.outputs.headers }}' | jq '.auth' == 'none'; then
 #            echo "NEED=true" >> "$GITHUB_ENV"
 #          else
 #            echo "NEED=false" >> "$GITHUB_ENV"
 #          fi
+        env:
+          FIRST_NAME: ('${{ steps.myRequest.outputs.headers }}' | jq '.auth')
       - name: check Response
         if: env.NEED == 'none'
         uses: actions/github-script@v3
