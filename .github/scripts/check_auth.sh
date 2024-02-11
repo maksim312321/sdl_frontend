@@ -1,6 +1,3 @@
 #!/bin/bash
-echo $HEADERS
-if [[ $HEADERS == *"auth"* ]]; then
-  echo "It's there!"
-fi
-  echo 'none'
+value=($(jq -r '.auth' $HEADERS))
+echo "$value"
