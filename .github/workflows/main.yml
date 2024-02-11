@@ -92,10 +92,12 @@ jobs:
           else
               echo "NEED=false" >> "$GITHUB_ENV"
           fi
-#          echo "NEED=$(echo $tests)" >> "$GITHUB_ENV"
+          echo "CURR=$(echo $tests)" >> "$GITHUB_ENV"
       - name: Skip Deploy?
         if: env.NEED != 'true'
-        run: echo $NEED
+        run: |
+          echo $NEED
+          echo $CURR
 #      - name: check Response
 #        run: |
 #          if [[ $NEED == 'none' ]]; then
