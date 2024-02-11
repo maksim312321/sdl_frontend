@@ -86,10 +86,13 @@ jobs:
           method: 'GET'
       - name: Show Response
         run: |
-           env.IsSuccess = '${{ steps.myRequest.outputs.headers }}' | jq '.auth'
-           echo env.IsSuccess
+          if [[ '${{ steps.myRequest.outputs.headers }}' | jq '.auth' == 'none' ]]; then
+            echo "NEED=true" >> "$GITHUB_ENV"
+          else
+            echo "NEED=false" >> "$GITHUB_ENV"
+          fi
       - name: Show Response
-        if: env.IsSuccess != 'none'
+        if: env.NEED == 'false'
         uses: actions/github-script@v3
         with:
           script: |
