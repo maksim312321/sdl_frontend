@@ -85,7 +85,7 @@ jobs:
           url: 'http://45.143.92.132/'
           method: 'GET'
       - name: Show Response
-        if: ('${{ steps.myRequest.outputs.headers }}' | jq '.auth' == 'none')
+        if: ('{"x-powered-by":"Express","auth":"none","accept-ranges":"bytes","cache-control":"public, max-age=0","last-modified":"Sat, 03 Feb 2024 20:21:24 GMT","etag":"W/\"364-18d70a209d2\"","content-type":"text/html; charset=UTF-8","content-length":"868","date":"Sun, 11 Feb 2024 10:19:23 GMT","connection":"keep-alive","keep-alive":"timeout=5"}' | jq '.auth' == 'none')
         uses: actions/github-script@v3
         with:
           script: |
