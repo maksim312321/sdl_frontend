@@ -2,6 +2,8 @@ name: main action
 
 on:
   push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
@@ -41,7 +43,7 @@ jobs:
   deploy:
     name: deploy
     needs: [tests, linter, sonar]
-    if:   github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     environment: deploy_env
     steps:
