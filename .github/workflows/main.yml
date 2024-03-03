@@ -9,8 +9,8 @@ on:
       - master
 
 jobs:
-  linter:
-    name: linter
+  lint:
+    name: lint
     runs-on: ubuntu-latest
     steps:
       - name: Get source code
@@ -19,8 +19,8 @@ jobs:
         run: npm install
       - name: Run lint
         run: npm run lint
-  tests:
-    name: tests
+  units:
+    name: units
     runs-on: ubuntu-latest
     steps:
       - name: Get source code
@@ -42,7 +42,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
   deploy:
     name: deploy
-    needs: [tests, linter, sonar]
+    needs: [units, lint, sonar]
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     environment: deploy_env

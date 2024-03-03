@@ -12,3 +12,10 @@ lint:
   script:
     - npm install
     - npm run lint
+
+units:
+  stage: test
+  image: node:latest
+  script:
+    - npm install
+    - npm run test
