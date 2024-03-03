@@ -21,6 +21,7 @@ units:
     - npm install
     - npm run test
 
+
 sonar:
   stage: test
   image:
