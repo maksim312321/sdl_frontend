@@ -25,6 +25,7 @@ units:
     - npm run test
 
 sonar:
+  stage: test
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
