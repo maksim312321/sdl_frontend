@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
-import config from '../config.js';
+import config from '../config';
 
+// eslint-disable-next-line func-names
 export default function (req, res, next) {
   if (req.method === 'OPTIONS') {
     next();
@@ -18,6 +19,7 @@ export default function (req, res, next) {
     req.user = decoded;
     next();
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log(e);
     res.redirect('/login');
   }

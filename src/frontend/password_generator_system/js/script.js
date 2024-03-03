@@ -1,4 +1,4 @@
-import RandomManager from './RandomManager.js';
+import RandomManager from './RandomManager';
 // Functions for generating random number lowercase uppercase letters , symbols
 
 /* Math.random method genrate a random floating-point numbers

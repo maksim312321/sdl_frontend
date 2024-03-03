@@ -2,22 +2,28 @@ import './style.css';
 
 const root = document.querySelector(':root');
 const container = document.querySelector('.container');
-const newTaskInput = document.getElementById('new_task_input');
 const taskform = document.getElementById('new_task_form');
 const tasksList = document.getElementById('tasksList');
-const taskBtns = document.querySelectorAll('.task_check_btn');
 const themeBtn = document.querySelector('.theme_toogle_btn');
-// Do this when we submit the form
-taskform.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const newtaskInputValue = taskform.elements.new_task_input;
 
-  addTask(newtaskInputValue.value);
+// To remove the completed task
+function onTaskComplete(btns) {
+  btns.addEventListener('click', (element) => {
+    const parents = element.target.parentElement;
+    parents.classList.add('task-completed'); // To slide out the task to the right
+    // Now we delete that tast which we have slided out
+    setTimeout(() => {
+      // Removing Parent Element of checkobx which is Li in 0.5 s
+      parents.remove();
+    }, 400);
 
-  // Reset input value to empty
-  newtaskInputValue.value = '';
-  container.classList.remove('task_list_empty');
-});
+    if (tasksList.childNodes.length === 1) {
+      setTimeout(() => {
+        container.classList.add('task_list_empty');
+      }, 200);
+    }
+  });
+}
 
 // To  add task in List
 function addTask(newTask) {
@@ -48,25 +54,17 @@ function addTask(newTask) {
   onTaskComplete(newCheckBtn);
 }
 
-// To remove the completed task
-function onTaskComplete(btns) {
-  btns.addEventListener('click', (element) => {
-    const parents = element.target.parentElement;
-    parents.classList.add('task-completed'); // To slide out the task to the right
-    // Now we delete that tast which we have slided out
-    setTimeout(() => {
-      // Removing Parent Element of checkobx which is Li in 0.5 s
-      parents.remove();
-    }, 400);
+// Do this when we submit the form
+taskform.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const newtaskInputValue = taskform.elements.new_task_input;
 
-    if (tasksList.childNodes.length === 1) {
-      setTimeout(() => {
-        container.classList.add('task_list_empty');
-      }, 200);
-    }
-  });
-}
+  addTask(newtaskInputValue.value);
 
+  // Reset input value to empty
+  newtaskInputValue.value = '';
+  container.classList.remove('task_list_empty');
+});
 // Dark mode
 
 themeBtn.addEventListener('click', () => {

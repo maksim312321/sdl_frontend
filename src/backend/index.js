@@ -2,8 +2,8 @@
 import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
-import authRouter from './auth/authRouter.js';
-import authMiddleware from './middleware/authMiddleware.js';
+import authRouter from './auth/authRouter';
+import authMiddleware from './middleware/authMiddleware';
 
 const PORT = 80;
 const app = express();
@@ -57,6 +57,7 @@ const start = async () => {
   try {
     app.listen(PORT);
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log(e);
   }
 };

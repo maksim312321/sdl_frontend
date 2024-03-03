@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs';
 import { validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
-import DbConnector from '../db/DbConnector.js';
-import config from '../config.js';
+import DbConnector from '../db/DbConnector';
+import config from '../config';
 
 function generateToken(id) {
   const payload = {
@@ -22,6 +22,7 @@ export default class AuthController {
         return;
       }
 
+      // eslint-disable-next-line prefer-const
       let { name, password } = req.body;
       const connect = DbConnector.open();
 
@@ -40,6 +41,7 @@ export default class AuthController {
       res.status(200).json(newUser.insertId);
       DbConnector.close(connect);
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
       res.status(400).json({ message: 'Registration error' });
     }
@@ -74,6 +76,7 @@ export default class AuthController {
       res.status(200).json(token);
       DbConnector.close(connect);
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
       res.status(400).json({ message: 'Login error' });
     }
@@ -90,6 +93,7 @@ export default class AuthController {
         DbConnector.close(connect);
       });
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   }

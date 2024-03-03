@@ -36,7 +36,7 @@ export default class Calculator {
     let computation;
     const prev = parseFloat(this.previousOperand);
     const current = parseFloat(this.currentOperand);
-    if (isNaN(prev) || isNaN(current)) return;
+    if (Number.isNaN(prev) || Number.isNaN(current)) return;
     switch (this.operation) {
       case '+':
         computation = prev + current;
@@ -58,12 +58,13 @@ export default class Calculator {
     this.previousOperand = '';
   }
 
+  // eslint-disable-next-line class-methods-use-this
   getDisplayNumber(number) {
     const stringNumber = number.toString();
     const integerDigits = parseFloat(stringNumber.split('.')[0]);
     const decimalDigits = stringNumber.split('.')[1];
     let integerDisplay;
-    if (isNaN(integerDigits)) {
+    if (Number.isNaN(integerDigits)) {
       integerDisplay = '';
     } else {
       integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 });
@@ -108,17 +109,17 @@ operationButtons.forEach((button) => {
   });
 });
 
-equalsButton.addEventListener('click', (button) => {
+equalsButton.addEventListener('click', () => {
   calculator.compute();
   calculator.updateDisplay();
 });
 
-allClearButton.addEventListener('click', (button) => {
+allClearButton.addEventListener('click', () => {
   calculator.clear();
   calculator.updateDisplay();
 });
 
-deleteButton.addEventListener('click', (button) => {
+deleteButton.addEventListener('click', () => {
   calculator.delete();
   calculator.updateDisplay();
 });

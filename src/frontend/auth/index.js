@@ -21,6 +21,7 @@ class Auth {
       document.cookie = `${encodeURIComponent('authorization')}=${encodeURIComponent(`Bearer ${res}`)}`;
       window.location.href = window.location.origin;
     } else {
+      // eslint-disable-next-line no-alert
       alert(JSON.stringify(res));
     }
   }
@@ -44,6 +45,7 @@ class Auth {
     if (typeof res === 'number') {
       window.location.href = `${window.location.origin}/login`;
     } else {
+      // eslint-disable-next-line no-alert
       alert(JSON.stringify(res));
     }
   }
