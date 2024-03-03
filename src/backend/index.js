@@ -2,8 +2,8 @@
 import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
-import authRouter from './auth/authRouter';
-import authMiddleware from './middleware/authMiddleware';
+import authRouter from './auth/authRouter.js';
+import authMiddleware from './middleware/authMiddleware.js';
 
 const PORT = 80;
 const app = express();

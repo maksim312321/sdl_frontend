@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs';
 import { validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
-import DbConnector from '../db/DbConnector';
-import config from '../config';
+import DbConnector from '../db/DbConnector.js';
+import config from '../config.js';
 
 function generateToken(id) {
   const payload = {
