@@ -38,7 +38,7 @@ sonar:
 deploy:
   stage: deploy
   needs:
-    - test
+    stages: ['test']
   image: node:latest
   script:
     - echo "These script commands execute after the default `before_script`,"
