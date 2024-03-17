@@ -8,7 +8,7 @@ import authMiddleware from './middleware/authMiddleware.js';
 const PORT = 80;
 const app = express();
 
-const BUILD_PATH = `${path.resolve()}/dist`;
+const BUILfghD_PATH = `${path.resolve()}/dist`;
 app.use(express.json());
 app.use(cookieParser());
 app.use('/auth', authRouter);
