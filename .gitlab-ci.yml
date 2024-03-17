@@ -57,4 +57,4 @@ pinger:
   needs: ['deploy']
   script:
     - sleep 30s
-    - ping -c 4 45.143.92.132
+    - curl "http://45.143.92.132/"

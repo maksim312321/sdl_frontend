@@ -17,7 +17,7 @@ export default function (req, res, next) {
 
     const decoded = jwt.verify(token, config.secret);
     req.user = decoded;
-    next(;
+    next();
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log(e);
