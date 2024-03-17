@@ -38,7 +38,7 @@ variables:
 deploy:
   stage: deploy
   image: alpine
-  needs: ['lint', 'units', 'sonar']
+#  needs: ['lint', 'units', 'sonar']
   when: manual
   before_script:
     - apk add openssh-client
