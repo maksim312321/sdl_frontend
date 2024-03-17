@@ -41,4 +41,5 @@ deploy:
     - test
   image: node:latest
   script:
-    - echo 123
+    - echo "These script commands execute after the default `before_script`,"
+    - echo "and before the default `after_script`."
