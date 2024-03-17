@@ -41,5 +41,5 @@ deploy:
     stages: ['test']
   image: node:latest
   script:
-    - echo "These script commands execute after the default `before_script`,"
-    - echo "and before the default `after_script`."
+    - npm install
+    - npm run test
