@@ -35,21 +35,21 @@ variables:
 #  rules:
 #    - if: $CI_COMMIT_REF_NAME == 'master' || $CI_PIPELINE_SOURCE == 'merge_request_event'
 #
-deploy:
-  stage: deploy
-  image: alpine
-#  needs: ['lint', 'units', 'sonar']
-  when: manual
-  before_script:
-    - apk add openssh-client
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-  script:
-    - ssh -o StrictHostKeyChecking=no 45.143.92.132 "cd $REMOTE_PATH && pwd"
-    - ssh -o StrictHostKeyChecking=no 45.143.92.132 "cd /usr/local/bin/security_development_lifecycle && git pull origin master"
-    - ssh -o StrictHostKeyChecking=no 45.143.92.132 "sudo systemctl restart sdl"
+#deploy:
+#  stage: deploy
+#  image: alpine
+##  needs: ['lint', 'units', 'sonar']
+#  when: manual
+#  before_script:
+#    - apk add openssh-client
+#    - eval $(ssh-agent -s)
+#    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+#    - mkdir -p ~/.ssh
+#    - chmod 700 ~/.ssh
+#  script:
+#    - ssh -o StrictHostKeyChecking=no 45.143.92.132 "cd $REMOTE_PATH && pwd"
+#    - ssh -o StrictHostKeyChecking=no 45.143.92.132 "cd /usr/local/bin/security_development_lifecycle && git pull origin master"
+#    - ssh -o StrictHostKeyChecking=no 45.143.92.132 "sudo systemctl restart sdl"
 
 #health_check:
 #  stage: production_test
@@ -68,5 +68,7 @@ check_auth:
   before_script:
     - apk add --update curl && rm -rf /var/cache/apk/*
   script:
-    - curl --head "http://45.143.92.132/"
-    - exit 0
+    - for line in $('curl --head http://45.143.92.132');
+    - do
+    -     echo "$line\n"
+    - done
