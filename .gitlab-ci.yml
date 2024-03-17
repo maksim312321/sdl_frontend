@@ -38,12 +38,14 @@ variables:
 #  needs: ['lint', 'units', 'sonar']
 #  when: manual
 
-job_deploy:
-  stage: deploy
+deploy:
+  image: alpine
+  before_script:
+    - apk add openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
   script:
-    - ssh-keygen -t rsa -b 4096 -C '' -f ~/.ssh/deploy_rsa
-    - ssh-keyscan -H 45.143.92.132 >> ~/.ssh/known_hosts
-    - ssh-copy-id -i ~/.ssh/deploy_rsa.pub root@45.143.92.132
-    - rsync -avuz $CI_PROJECT_DIR/dist/ root@45.143.92.132:/usr/local/bin/security_development_lifecycle
-  only:
-    - master
+    - ssh -o StrictHostKeyChecking=no 45.143.92.132 "cd $REMOTE_PATH && pwd"
+    - ssh -o StrictHostKeyChecking=no 45.143.92.132 "cd /usr/local/bin/security_development_lifecycle && git pull origin master"
