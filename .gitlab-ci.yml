@@ -1,6 +1,6 @@
 stages:
   - test
-#  - deploy
+  - deploy
 #  - production_test
 
 variables:
@@ -34,3 +34,11 @@ sonar:
     - sonar-scanner
   rules:
     - if: $CI_COMMIT_REF_NAME == 'master' || $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+deploy:
+  stage: deploy
+  needs:
+    - test
+  image: node:latest
+  script:
+    - echo 123
