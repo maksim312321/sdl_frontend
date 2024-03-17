@@ -64,7 +64,7 @@ variables:
 check_auth:
   stage: production_test
   image: alpine
-  needs: ['deploy']
+#  needs: ['deploy']
   before_script:
     - apk add --update curl && rm -rf /var/cache/apk/*
   script:
