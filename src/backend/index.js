@@ -38,11 +38,17 @@ app.get('/todo_app', authMiddleware, (req, res) => {
 });
 
 app.get('/reg', (req, res) => {
+  res.set({
+    auth: 'none',
+  });
   app.use('/auth', express.static(`${BUILD_PATH}/auth`));
   res.sendFile(path.resolve(BUILD_PATH, 'reg', 'index.html'));
 });
 
 app.get('/login', (req, res) => {
+  res.set({
+    auth: 'none',
+  });
   app.use('/auth', express.static(`${BUILD_PATH}/auth`));
   res.sendFile(path.resolve(BUILD_PATH, 'login', 'index.html'));
 });

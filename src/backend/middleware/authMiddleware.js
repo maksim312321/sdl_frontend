@@ -11,9 +11,9 @@ export default function (req, res, next) {
     const token = req.cookies?.authorization?.split(' ')[1];
 
     if (!token) {
-      // res.set({
-      //   auth: 'none',
-      // });
+      res.set({
+        auth: 'none',
+      });
       res.redirect('/login');
       return;
     }
