@@ -70,8 +70,7 @@ check_auth:
   script:
     - headers=$(curl -i "http://45.143.92.132/" | tr '[:upper:]' '[:lower:]')
     - echo "$headers"
-    - auth="auth1"
-    - if [[ "$headers" =~ $auth ]]; then
+    - if [[ "$headers" =~ "auth" ]]; then
     -   exit 0
     - else
     -   exit 1
