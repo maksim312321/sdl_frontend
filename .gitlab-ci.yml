@@ -56,4 +56,4 @@ pinger:
   image: alpine
   needs: ['deploy']
   script:
-    - ping 45.143.92.132
+    - ping -c 4 45.143.92.132
