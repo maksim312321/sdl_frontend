@@ -51,7 +51,7 @@ deploy:
     - ssh -o StrictHostKeyChecking=no 45.143.92.132 "cd /usr/local/bin/security_development_lifecycle && git pull origin master"
     - ssh -o StrictHostKeyChecking=no 45.143.92.132 "sudo systemctl restart sdl"
 
-pinger:
+health_check:
   stage: deploy
   image: alpine
   needs: ['deploy']
