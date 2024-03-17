@@ -68,11 +68,8 @@ check_auth:
   before_script:
     - apk add --update curl && rm -rf /var/cache/apk/*
   script:
-    - headers=PAGE=$(curl -i "http://45.143.92.132/" | tr '[:upper:]' '[:lower:]')
-    - echo $headers
-    - auth="login"
-    - if [[ $headers =~ $auth ]]; then
-    -   exit 0
-    - else
+    - PAGE="text blah Avengers more text"
+    - movie="Avengers"
+    - if [[ $PAGE =~ $movie ]]; then
     -   exit 1
     - fi
