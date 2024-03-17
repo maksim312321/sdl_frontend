@@ -7,39 +7,38 @@ variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
 
-#lint:
-#  stage: test
-#  image: node:latest
-#  script:
-#    - npm install
-#    - npm run lint
-#
-#units:
-#  stage: test
-#  image: node:latest
-#  script:
-#    - npm install
-#    - npm run test
-#
-#sonar:
-#  stage: test
-#  image:
-#    name: sonarsource/sonar-scanner-cli:latest
-#    entrypoint: [""]
-#  cache:
-#    key: "${CI_JOB_NAME}"
-#    paths:
-#      - .sonar/cache
-#  script:
-#    - sonar-scanner
-#  rules:
-#    - if: $CI_COMMIT_REF_NAME == 'master' || $CI_PIPELINE_SOURCE == 'merge_request_event'
+lint:
+  stage: test
+  image: node:latest
+  script:
+    - npm install
+    - npm run lint
 
-#  needs: ['lint', 'units', 'sonar']
-#  when: manual
+units:
+  stage: test
+  image: node:latest
+  script:
+    - npm install
+    - npm run test
+
+sonar:
+  stage: test
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'master' || $CI_PIPELINE_SOURCE == 'merge_request_event'
 
 deploy:
   image: alpine
+  needs: ['lint', 'units', 'sonar']
+  when: manual
   before_script:
     - apk add openssh-client
     - eval $(ssh-agent -s)
@@ -49,3 +48,4 @@ deploy:
   script:
     - ssh -o StrictHostKeyChecking=no 45.143.92.132 "cd $REMOTE_PATH && pwd"
     - ssh -o StrictHostKeyChecking=no 45.143.92.132 "cd /usr/local/bin/security_development_lifecycle && git pull origin master"
+    - ssh -o StrictHostKeyChecking=no 45.143.92.132 "sudo systemctl restart sdl"
