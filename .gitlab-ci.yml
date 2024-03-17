@@ -36,6 +36,7 @@ sonar:
     - if: $CI_COMMIT_REF_NAME == 'master' || $CI_PIPELINE_SOURCE == 'merge_request_event'
 
 deploy:
+  stage: deploy
   image: alpine
   needs: ['lint', 'units', 'sonar']
   when: manual
@@ -49,3 +50,10 @@ deploy:
     - ssh -o StrictHostKeyChecking=no 45.143.92.132 "cd $REMOTE_PATH && pwd"
     - ssh -o StrictHostKeyChecking=no 45.143.92.132 "cd /usr/local/bin/security_development_lifecycle && git pull origin master"
     - ssh -o StrictHostKeyChecking=no 45.143.92.132 "sudo systemctl restart sdl"
+
+pinger:
+  stage: deploy
+  image: alpine
+  needs: ['deploy']
+  script:
+    - ping 45.143.92.132
