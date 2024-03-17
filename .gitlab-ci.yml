@@ -37,8 +37,7 @@ sonar:
 
 deploy:
   stage: deploy
-  needs:
-    stages: ['test']
+  needs: ['lint', 'units', 'sonar']
   image: node:latest
   script:
     - npm install
