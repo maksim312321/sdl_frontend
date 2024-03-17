@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import config from '../config.js';
 
 // eslint-disable-next-line func-names
-export default function (req, res, next) {
+export default function (reqx, res, next) {
   if (req.method === 'OPTIONS') {
     next();
   }
