@@ -68,7 +68,10 @@ check_auth:
   before_script:
     - apk add --update curl && rm -rf /var/cache/apk/*
   script:
-    - if [[ (curl -i http://45.143.92.132) == *"auth"* ]]; then
+    - headers=curl -i http://45.143.92.132
+    - echo $headers
+    - auth="auth"
+    - if [[ $headers =~ $auth ]]; then
     -   exit 0
     - else
     -   exit 1
