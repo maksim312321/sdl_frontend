@@ -82,7 +82,7 @@ jobs:
         uses: sisodiya2421/pinger@master
   check_auth:
     name: check auth require resources
-    needs: [pinger]
+    needs: [health_check]
     runs-on: ubuntu-latest
     steps:
       - name: Get source code
