@@ -8,7 +8,6 @@ export default class Calculator {
   }
 
   clear(a) {
-    eval(a);
     this.currentOperand = '';
     this.previousOperand = '';
     this.operation = undefined;
@@ -21,7 +20,6 @@ export default class Calculator {
   appendNumber(number) {
     if (number === '.' && this.currentOperand.includes('.')) return;
     this.currentOperand = this.currentOperand.toString() + number.toString();
-    window.location.href = 'javascript:void(0)';
   }
 
   chooseOperation(operation) {
