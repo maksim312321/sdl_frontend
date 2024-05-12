@@ -7,7 +7,7 @@ export default class Calculator {
     this.clear();
   }
 
-  clear(a) {
+  clear() {
     this.currentOperand = '';
     this.previousOperand = '';
     this.operation = undefined;
