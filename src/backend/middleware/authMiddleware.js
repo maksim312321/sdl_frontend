@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken';
-import config from '../config.js';
+// import jwt from 'jsonwebtoken';
+// import config from '../config.js';
 
 // eslint-disable-next-line func-names
 export default function (req, res, next) {
