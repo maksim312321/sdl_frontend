@@ -5,7 +5,6 @@ import cookieParser from 'cookie-parser';
 import authRouter from './auth/authRouter.js';
 import authMiddleware from './middleware/authMiddleware.js';
 
-const PORT = 80;
 const app = express();
 
 const BUILD_PATH = `${path.resolve()}/dist`;
@@ -52,14 +51,3 @@ app.get('/login', (req, res) => {
   app.use('/auth', express.static(`${BUILD_PATH}/auth`));
   res.sendFile(path.resolve(BUILD_PATH, 'login', 'index.html'));
 });
-
-const start = async () => {
-  try {
-    console.log(123);
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log(e);
-  }
-};
-
-start();
