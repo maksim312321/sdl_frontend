@@ -55,7 +55,7 @@ app.get('/login', (req, res) => {
 
 const start = async () => {
   try {
-    app.listen(PORT);
+    console.log(123);
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log(e);
