@@ -8,7 +8,7 @@ export default function (req, res, next) {
   }
 
   try {
-    const token = req.cookies?.authorization?.split(' ')[1];
+    // const token = req.cookies?.authorization?.split(' ')[1];
 
     // if (!token) {
     //   res.set({
@@ -18,8 +18,8 @@ export default function (req, res, next) {
     //   return;
     // }
 
-    const decoded = jwt.verify(token, config.secret);
-    req.user = decoded;
+    // const decoded = jwt.verify(token, config.secret);
+    // req.user = decoded;
     next();
   } catch (e) {
     // eslint-disable-next-line no-console
