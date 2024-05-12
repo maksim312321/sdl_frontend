@@ -5,6 +5,7 @@ import RandomManager from './RandomManager.js';
 Math.floor() function returns the largest integer less than or equal to a given number.
 For generating a random uppercase lowercase text random numbers symbols we use Charcode
 http://stevehardie.com/2009/09/character-code-list-char-code/ */
+randomFunc.lower();
 
 // adding a all functions into a object called randomFunc
 const randomFunc = {
